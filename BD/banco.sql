@@ -302,6 +302,66 @@ CREATE TABLE IF NOT EXISTS `bdwork`.`tela_has_perfil` (
 ENGINE = InnoDB;
 
 
-SET SQL_MODE=@OLD_SQL_MODE;
-SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS;
-SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS;
+INSERT INTO `continente` (`id`, `nome`) VALUES
+(1, 'África'),
+(2, 'América do Sul'),
+(3, 'América do Norte'),
+(4, 'Europa'),
+(5, 'Oceania'),
+(6, 'Ásia');
+
+INSERT INTO `pais` (`id`, `nome`, `continente_id`) VALUES
+(1, 'Brasil', 2),
+(2, 'Argentina', 2),
+(3, 'Peru', 2);
+
+INSERT INTO `estado` (`id`, `nome`, `pais_id`) VALUES
+(1, 'Distrito Federal', 1),
+(2, 'Minas Gerais', 1),
+(3, 'São Paulo', 1);
+
+INSERT INTO `cidade` (`id`, `nome`, `estado_id`) VALUES
+(1, 'Asa Norte', 1),
+(2, 'Asa Sul', 1),
+(3, 'Taguatinga', 1),
+(4, 'Aguas Claras', 1);
+
+INSERT INTO `bairro` (`id`, `nome`, `cidade_id`) VALUES
+(1, 'Asa Sul', 2),
+(1, 'Taguá', 3),
+(1, 'Asa Norte', 1);
+
+INSERT INTO `rua` (`id`, `nome`, `bairro_id`, `velocidade`) VALUES
+(4, 'L2', 1, 60),
+(5, 'W3', 1, 60),
+(6, 'W5', 1, 60);
+
+INSERT INTO `localizacao` (`id`, `latitude`, `longitude`, `rua_id`) VALUES
+(6, '11', '31', 4),
+(7, '31', '12', 4),
+(8, '22', '14', 4);
+
+
+INSERT INTO `perfil` (`id`, `nome`) VALUES
+(1, 'Administrador'),
+(2, 'Usuário'),
+(3, 'Suporte');
+
+INSERT INTO `tipo_de_acidente` (`id`, `descricao`) VALUES
+(1, 'Colisão'),
+(2, 'Capotamento'),
+(3, 'Atropelamento');
+
+INSERT INTO `tipo_fiscalizacao` (`id`, `nome`, `periodo_de_visualizacao`) VALUES
+(1, 'Blitz', 2),
+(2, 'Pardal', 0),
+(3, 'Barreira Eletrônica', 0);
+
+INSERT INTO `usuario` (`id`, `nome`, `sobrenome`, `senha`, `email`, `perfil_id`) VALUES
+(2, 'Hugo', 'Fagundes', '123123', 'hugofagundes07@gmail.com', 1),
+(3, 'Jefferson', 'Viana', '123123', '', 1),
+(4, 'Renan', 'Lobato', '123123', '', 1),
+(5, 'Vitor', 'Pontes', '123123', '', 1);
+
+
+
