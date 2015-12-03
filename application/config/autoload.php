@@ -58,22 +58,24 @@ $autoload['packages'] = array();
 |
 |	$autoload['libraries'] = array('user_agent' => 'ua');
 */
-$autoload['libraries'] = array();
+$autoload['libraries'] = array('database', 'session', 'email', 'encrypt');
+
 
 /*
 | -------------------------------------------------------------------
 |  Auto-load Drivers
 | -------------------------------------------------------------------
-| These classes are located in system/libraries/ or in your
-| application/libraries/ directory, but are also placed inside their
-| own subdirectory and they extend the CI_Driver_Library class. They
+| These classes are located in the system/libraries folder or in your
+| application/libraries folder within their own subdirectory. They
 | offer multiple interchangeable driver options.
 |
 | Prototype:
 |
 |	$autoload['drivers'] = array('cache');
 */
+
 $autoload['drivers'] = array();
+
 
 /*
 | -------------------------------------------------------------------
@@ -83,7 +85,8 @@ $autoload['drivers'] = array();
 |
 |	$autoload['helper'] = array('url', 'file');
 */
-$autoload['helper'] = array();
+
+$autoload['helper'] = array('form', 'url');
 
 /*
 | -------------------------------------------------------------------
