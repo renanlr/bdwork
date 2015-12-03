@@ -8,19 +8,19 @@ SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0;
 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='TRADITIONAL,ALLOW_INVALID_DATES';
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema bdwork
 -- -----------------------------------------------------
 
 -- -----------------------------------------------------
--- Schema mydb
+-- Schema bdwork
 -- -----------------------------------------------------
-CREATE SCHEMA IF NOT EXISTS `mydb` DEFAULT CHARACTER SET utf8 ;
-USE `mydb` ;
+CREATE SCHEMA IF NOT EXISTS `bdwork` DEFAULT CHARACTER SET utf8 ;
+USE `bdwork` ;
 
 -- -----------------------------------------------------
--- Table `mydb`.`perfil`
+-- Table `bdwork`.`perfil`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`perfil` (
+CREATE TABLE IF NOT EXISTS `bdwork`.`perfil` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
@@ -28,9 +28,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`usuario`
+-- Table `bdwork`.`usuario`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`usuario` (
+CREATE TABLE IF NOT EXISTS `bdwork`.`usuario` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(200) NOT NULL,
   `sobrenome` VARCHAR(45) NOT NULL,
@@ -41,16 +41,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`usuario` (
   INDEX `fk_usuario_perfil1_idx` (`perfil_id` ASC),
   CONSTRAINT `fk_usuario_perfil1`
     FOREIGN KEY (`perfil_id`)
-    REFERENCES `mydb`.`perfil` (`id`)
+    REFERENCES `bdwork`.`perfil` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`continente`
+-- Table `bdwork`.`continente`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`continente` (
+CREATE TABLE IF NOT EXISTS `bdwork`.`continente` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
@@ -58,9 +58,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`pais`
+-- Table `bdwork`.`pais`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`pais` (
+CREATE TABLE IF NOT EXISTS `bdwork`.`pais` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NULL,
   `continente_id` INT NOT NULL,
@@ -68,16 +68,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`pais` (
   INDEX `fk_pais_continente1_idx` (`continente_id` ASC),
   CONSTRAINT `fk_pais_continente1`
     FOREIGN KEY (`continente_id`)
-    REFERENCES `mydb`.`continente` (`id`)
+    REFERENCES `bdwork`.`continente` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`estado`
+-- Table `bdwork`.`estado`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`estado` (
+CREATE TABLE IF NOT EXISTS `bdwork`.`estado` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `pais_id` INT NOT NULL,
@@ -85,16 +85,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`estado` (
   INDEX `fk_estado_pais1_idx` (`pais_id` ASC),
   CONSTRAINT `fk_estado_pais1`
     FOREIGN KEY (`pais_id`)
-    REFERENCES `mydb`.`pais` (`id`)
+    REFERENCES `bdwork`.`pais` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`cidade`
+-- Table `bdwork`.`cidade`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`cidade` (
+CREATE TABLE IF NOT EXISTS `bdwork`.`cidade` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `estado_id` INT NOT NULL,
@@ -102,16 +102,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`cidade` (
   INDEX `fk_cidade_estado1_idx` (`estado_id` ASC),
   CONSTRAINT `fk_cidade_estado1`
     FOREIGN KEY (`estado_id`)
-    REFERENCES `mydb`.`estado` (`id`)
+    REFERENCES `bdwork`.`estado` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`bairro`
+-- Table `bdwork`.`bairro`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`bairro` (
+CREATE TABLE IF NOT EXISTS `bdwork`.`bairro` (
   `id` INT NOT NULL,
   `nome` VARCHAR(45) NOT NULL,
   `cidade_id` INT NOT NULL,
@@ -119,16 +119,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`bairro` (
   INDEX `fk_bairro_cidade1_idx` (`cidade_id` ASC),
   CONSTRAINT `fk_bairro_cidade1`
     FOREIGN KEY (`cidade_id`)
-    REFERENCES `mydb`.`cidade` (`id`)
+    REFERENCES `bdwork`.`cidade` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`rua`
+-- Table `bdwork`.`rua`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`rua` (
+CREATE TABLE IF NOT EXISTS `bdwork`.`rua` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `bairro_id` INT NOT NULL,
@@ -137,16 +137,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`rua` (
   INDEX `fk_rua_bairro1_idx` (`bairro_id` ASC),
   CONSTRAINT `fk_rua_bairro1`
     FOREIGN KEY (`bairro_id`)
-    REFERENCES `mydb`.`bairro` (`id`)
+    REFERENCES `bdwork`.`bairro` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`localizacao`
+-- Table `bdwork`.`localizacao`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`localizacao` (
+CREATE TABLE IF NOT EXISTS `bdwork`.`localizacao` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `latitude` VARCHAR(45) NOT NULL,
   `longitude` VARCHAR(45) NOT NULL,
@@ -155,16 +155,16 @@ CREATE TABLE IF NOT EXISTS `mydb`.`localizacao` (
   INDEX `fk_localizacao_rua1_idx` (`rua_id` ASC),
   CONSTRAINT `fk_localizacao_rua1`
     FOREIGN KEY (`rua_id`)
-    REFERENCES `mydb`.`rua` (`id`)
+    REFERENCES `bdwork`.`rua` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`buraco`
+-- Table `bdwork`.`buraco`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`buraco` (
+CREATE TABLE IF NOT EXISTS `bdwork`.`buraco` (
   `localizacao_id` INT NOT NULL,
   `usuario_id` INT NOT NULL,
   `confirmado` TINYINT(1) NOT NULL,
@@ -176,21 +176,21 @@ CREATE TABLE IF NOT EXISTS `mydb`.`buraco` (
   INDEX `fk_buraco_usuario1_idx` (`usuario_id` ASC),
   CONSTRAINT `fk_buraco_localizacao1`
     FOREIGN KEY (`localizacao_id`)
-    REFERENCES `mydb`.`localizacao` (`id`)
+    REFERENCES `bdwork`.`localizacao` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_buraco_usuario1`
     FOREIGN KEY (`usuario_id`)
-    REFERENCES `mydb`.`usuario` (`id`)
+    REFERENCES `bdwork`.`usuario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tipo_de_acidente`
+-- Table `bdwork`.`tipo_de_acidente`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tipo_de_acidente` (
+CREATE TABLE IF NOT EXISTS `bdwork`.`tipo_de_acidente` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `descricao` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
@@ -198,9 +198,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`acidente`
+-- Table `bdwork`.`acidente`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`acidente` (
+CREATE TABLE IF NOT EXISTS `bdwork`.`acidente` (
   `idacidente` INT NOT NULL AUTO_INCREMENT,
   `usuario_id` INT NOT NULL,
   `localizacao_id` INT NOT NULL,
@@ -211,26 +211,26 @@ CREATE TABLE IF NOT EXISTS `mydb`.`acidente` (
   INDEX `fk_acidente_tipo_de_acidente1_idx` (`tipo_de_acidente_id` ASC),
   CONSTRAINT `fk_acidente_usuario1`
     FOREIGN KEY (`usuario_id`)
-    REFERENCES `mydb`.`usuario` (`id`)
+    REFERENCES `bdwork`.`usuario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_acidente_localizacao1`
     FOREIGN KEY (`localizacao_id`)
-    REFERENCES `mydb`.`localizacao` (`id`)
+    REFERENCES `bdwork`.`localizacao` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_acidente_tipo_de_acidente1`
     FOREIGN KEY (`tipo_de_acidente_id`)
-    REFERENCES `mydb`.`tipo_de_acidente` (`id`)
+    REFERENCES `bdwork`.`tipo_de_acidente` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tipo_fiscalizacao`
+-- Table `bdwork`.`tipo_fiscalizacao`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tipo_fiscalizacao` (
+CREATE TABLE IF NOT EXISTS `bdwork`.`tipo_fiscalizacao` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   `periodo_de_visualizacao` INT NOT NULL,
@@ -239,9 +239,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`fiscalização`
+-- Table `bdwork`.`fiscalização`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`fiscalização` (
+CREATE TABLE IF NOT EXISTS `bdwork`.`fiscalização` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `localizacao_id` INT NOT NULL,
   `usuario_id` INT NOT NULL,
@@ -254,26 +254,26 @@ CREATE TABLE IF NOT EXISTS `mydb`.`fiscalização` (
   INDEX `fk_fiscal_eletronica_tipo_de_fiscalizacao1_idx` (`tipo_de_fiscalizacao_id` ASC),
   CONSTRAINT `fk_fiscal_eletronica_localizacao1`
     FOREIGN KEY (`localizacao_id`)
-    REFERENCES `mydb`.`localizacao` (`id`)
+    REFERENCES `bdwork`.`localizacao` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_fiscal_eletronica_usuario1`
     FOREIGN KEY (`usuario_id`)
-    REFERENCES `mydb`.`usuario` (`id`)
+    REFERENCES `bdwork`.`usuario` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_fiscal_eletronica_tipo_de_fiscalizacao1`
     FOREIGN KEY (`tipo_de_fiscalizacao_id`)
-    REFERENCES `mydb`.`tipo_fiscalizacao` (`id`)
+    REFERENCES `bdwork`.`tipo_fiscalizacao` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tela`
+-- Table `bdwork`.`tela`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tela` (
+CREATE TABLE IF NOT EXISTS `bdwork`.`tela` (
   `id` INT NOT NULL AUTO_INCREMENT,
   `nome` VARCHAR(45) NOT NULL,
   PRIMARY KEY (`id`))
@@ -281,9 +281,9 @@ ENGINE = InnoDB;
 
 
 -- -----------------------------------------------------
--- Table `mydb`.`tela_has_perfil`
+-- Table `bdwork`.`tela_has_perfil`
 -- -----------------------------------------------------
-CREATE TABLE IF NOT EXISTS `mydb`.`tela_has_perfil` (
+CREATE TABLE IF NOT EXISTS `bdwork`.`tela_has_perfil` (
   `tela_id` INT NOT NULL,
   `perfil_id` INT NOT NULL,
   PRIMARY KEY (`tela_id`, `perfil_id`),
@@ -291,12 +291,12 @@ CREATE TABLE IF NOT EXISTS `mydb`.`tela_has_perfil` (
   INDEX `fk_tela_has_perfil_tela1_idx` (`tela_id` ASC),
   CONSTRAINT `fk_tela_has_perfil_tela1`
     FOREIGN KEY (`tela_id`)
-    REFERENCES `mydb`.`tela` (`id`)
+    REFERENCES `bdwork`.`tela` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION,
   CONSTRAINT `fk_tela_has_perfil_perfil1`
     FOREIGN KEY (`perfil_id`)
-    REFERENCES `mydb`.`perfil` (`id`)
+    REFERENCES `bdwork`.`perfil` (`id`)
     ON DELETE NO ACTION
     ON UPDATE NO ACTION)
 ENGINE = InnoDB;
