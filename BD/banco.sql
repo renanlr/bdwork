@@ -328,8 +328,8 @@ INSERT INTO `cidade` (`id`, `nome`, `estado_id`) VALUES
 
 INSERT INTO `bairro` (`id`, `nome`, `cidade_id`) VALUES
 (1, 'Asa Sul', 2),
-(1, 'Taguá', 3),
-(1, 'Asa Norte', 1);
+(2, 'Taguá', 3),
+(3, 'Asa Norte', 1);
 
 INSERT INTO `rua` (`id`, `nome`, `bairro_id`, `velocidade`) VALUES
 (4, 'L2', 1, 60),
