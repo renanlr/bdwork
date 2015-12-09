@@ -3,6 +3,6 @@
 	<input type="hidden" value="<?= $id ?>" name="id">
 
 	<div>
-		<button type="submit">Editar</button>
+		<button type="submit" onclick="change_location()">Editar</button>
 	</div>
 <?= form_close() ?>

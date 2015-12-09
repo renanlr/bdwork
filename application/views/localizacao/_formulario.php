@@ -1,10 +1,12 @@
+<?php $this->load->view('_include/header') ?>
+
+<div id="map"></div>
+
 <div>
-	<label>Latitude</label>
-	<input type="text" name="latitude">
+	<input type="hidden" name="latitude" id="latitude">
 </div>
 <div>
-	<label>Longitude</label>
-	<input type="text" name="longitude">
+	<input type="hidden" name="longitude" id="longitude">
 </div>
 <div>
 	<label>Continente</label>
@@ -21,3 +23,5 @@
 		<?php } ?>
 	</select>
 </div>
+
+<?php $this->load->view('_include/footer') ?>
