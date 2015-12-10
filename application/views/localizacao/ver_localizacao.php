@@ -15,5 +15,6 @@
 
 <div>
 	<a href="<?=site_url('localizacao/delete?id=' . $localizacao->id)?>">Deletar</a> |
-	<a href="<?=site_url('localizacao/edit?id=' . $localizacao->id)?>">Editar</a>
+	<a href="<?=site_url('localizacao/edit?id=' . $localizacao->id)?>">Editar</a> |
+	<a href="<?=site_url('buraco/read?id_localizacao=' . $localizacao->id)?>">Buracos</a>
 </div>
